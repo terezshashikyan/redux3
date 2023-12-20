@@ -1,0 +1,11 @@
+@import '../../styles/vars.scss';
+
+.wrapper {
+    width: 100%;
+    @extend %flex-center-center-column;
+};
+
+.pokemonsList {
+    flex-wrap: wrap;
+     @extend %flex-center-center;
+}
