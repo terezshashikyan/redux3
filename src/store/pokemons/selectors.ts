@@ -16,17 +16,18 @@ const renderedPokemonsListSelector = createSelector(
 
 const pokemonsCurrentPageSelector = createSelector(
   [pokemonsSelector],
-  (pokemons: IPokemonsInitialState) => pokemons.pokemons.data.currentPage
+  (pokemons: IPokemonsInitialState) => pokemons.pokemons.data.filters.currentPage
 );
 
 const pokemonsTypeSelector = createSelector(
   [pokemonsSelector],
-  (pokemons: IPokemonsInitialState) => pokemons.pokemons.data.filters.type
+  (pokemons: IPokemonsInitialState) =>
+    pokemons.pokemons.data.filters.selectedType
 );
 
 const pokemonsLimitSelector = createSelector(
   [pokemonsSelector],
-  (pokemons: IPokemonsInitialState) => pokemons.pokemons.data.limit
+  (pokemons: IPokemonsInitialState) => pokemons.pokemons.data.filters.limit
 );
 
 const pokemonsCountSelector = createSelector(

@@ -11,20 +11,23 @@ export const pokemonsSlice = createSlice({
     setPokemon(state: IPokemonsInitialState, action: PayloadAction<IPokemon>) {
       state.pokemon.data = action.payload;
     },
-    setPokemonsList(state: IPokemonsInitialState, action: PayloadAction<IPokemon[]>) {
+    setPokemonsList(
+      state: IPokemonsInitialState,
+      action: PayloadAction<IPokemon[]>
+    ) {
       state.pokemons.data.results = action.payload;
     },
     setSortMethod: (state, action: PayloadAction<string>) => {
       state.pokemons.data.filters.sortMethod = action.payload;
     },
     setType: (state, action: PayloadAction<string>) => {
-      state.pokemons.data.filters.type = action.payload;
+      state.pokemons.data.filters.selectedType = action.payload;
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
-      state.pokemons.data.currentPage = action.payload;
+      state.pokemons.data.filters.currentPage = action.payload;
     },
     setLimit: (state, action: PayloadAction<number>) => {
-      state.pokemons.data.limit = action.payload;
+      state.pokemons.data.filters.limit = action.payload;
     },
   },
 
@@ -52,4 +55,5 @@ export const pokemonsSlice = createSlice({
   },
 });
 
-export const { setPokemon, setPokemonsList, setType, setSortMethod } = pokemonsSlice.actions;
+export const { setPokemon, setPokemonsList, setType, setSortMethod, setLimit } =
+  pokemonsSlice.actions;

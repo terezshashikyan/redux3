@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IPokemon } from "../../components/Card/types";
 
 export const fetchPokemonsList = createAsyncThunk(
   "pokemon/fetchList",

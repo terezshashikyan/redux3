@@ -5,14 +5,14 @@ export interface IPokemonsInitialState {
   pokemons: {
     data: {
       count: number;
-      limit: number;
       totalPages: number;
-      currentPage: number;
       results: IPokemon[] | [];
       filters: {
+        limit: number;
         sortMethod: string;
-        type: string;
-      }
+        currentPage: number;
+        selectedType: string;
+      };
     };
     loading: boolean;
     error: null | string;

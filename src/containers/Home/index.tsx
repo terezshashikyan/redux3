@@ -1,26 +1,26 @@
 import { useEffect } from "react";
 import { AppDispatch } from "../../store";
+import DropDown from "../../components/DropDown ";
+import { IPokemon } from "../../components/Card/types";
 import { useDispatch, useSelector } from "react-redux";
-import { Card, Heading, Pagination } from "../../components";
+import { Card, Heading, Pagination, SearchInput } from "../../components";
 import { pokemonsSel, pokemonsOp } from "../../store/pokemons";
 import { fetchPokemonsList } from "../../store/pokemons/thunks";
 
 import styles from "./Home.module.scss";
-import DropDown from "../../components/DropDown ";
-import { IPokemon } from "../../components/Card/types";
 
 const Home = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const type = useSelector(pokemonsSel.pokemonsTypeSelector);
   const count = useSelector(pokemonsSel.pokemonsCountSelector);
   const limit = useSelector(pokemonsSel.pokemonsLimitSelector);
+  const selectedType = useSelector(pokemonsSel.pokemonsTypeSelector);
   const pokemonsList = useSelector(pokemonsSel.pokemonsListSelector);
   const currentPage = useSelector(pokemonsSel.pokemonsCurrentPageSelector);
 
   useEffect(() => {
-    dispatch(fetchPokemonsList(type));
-  }, [type]);
+    dispatch(fetchPokemonsList(selectedType));
+  }, [dispatch, selectedType]);
 
   const handleSortMethodClick = (pokemonsList: IPokemon[], option: string) => {
     dispatch(pokemonsOp.sortPokemonsList(pokemonsList, option));
@@ -30,23 +30,23 @@ const Home = () => {
     dispatch(pokemonsOp.setType(option));
   };
 
+  const handleLimitClick = (pokemonsList: IPokemon[], option: string) => {
+    dispatch(pokemonsOp.setLimit(Number(option)));
+  };
+
   const handlePageClick = (page: number) => {
     dispatch(pokemonsOp.setCurrentPage(page));
   };
 
   const pokemonsListRenderer = pokemonsList
-    .slice(0, 5)
+    .slice(currentPage * limit, currentPage * limit + limit)
     .map((pokemon) => <Card pokemon={pokemon} key={pokemon.id} />);
 
   return (
     <section className={styles.wrapper}>
+      <SearchInput onSearch={() => console.log("hi")} />
       <DropDown
-        options={[
-          "A to Z",
-          "Z to A",
-          "Lowest to Highest",
-          "Highest to Lowest",
-        ]}
+        options={["A to Z", "Z to A", "Lowest to Highest", "Highest to Lowest"]}
         handleClick={handleSortMethodClick}
       />
       <DropDown
@@ -74,6 +74,7 @@ const Home = () => {
         ]}
         handleClick={handleTypeClick}
       />
+      <DropDown options={["10", "20", "50"]} handleClick={handleLimitClick} />
       <Heading children="Pokédex" />
       <div className={styles.pokemonsList}>{pokemonsListRenderer}</div>
       <Pagination
