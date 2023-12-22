@@ -11,6 +11,7 @@ export interface IPokemonsInitialState {
         limit: number;
         sortMethod: string;
         currentPage: number;
+        searchInput: string;
         selectedType: string;
       };
     };

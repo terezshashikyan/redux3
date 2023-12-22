@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import styles from "./Pagination.module.scss";
+
 interface PaginationProps {
   totalItems: number;
   itemsPerPage: number;
@@ -53,9 +55,16 @@ const Pagination: React.FC<PaginationProps> = ({
     return displayPages.map((pageNumber) => (
       <li
         key={pageNumber}
-        className={pageNumber === currentPage ? "active" : ""}
+        className={
+          pageNumber === currentPage
+            ? styles.wrapper__li__active
+            : styles.wrapper__li
+        }
       >
-        <button onClick={() => handlePageChange(pageNumber)}>
+        <button
+          className={styles.wrapper__li__button}
+          onClick={() => handlePageChange(pageNumber)}
+        >
           {pageNumber}
         </button>
       </li>
@@ -63,10 +72,11 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   return (
-    <div>
-      <ul className="pagination">
-        <li>
+    <div className={styles.wrapper}>
+      <ul className={styles.wrapper__ul}>
+        <li className={styles.wrapper__li}>
           <button
+            className={styles.wrapper__li__button}
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
@@ -74,8 +84,9 @@ const Pagination: React.FC<PaginationProps> = ({
           </button>
         </li>
         {renderPageNumbers()}
-        <li>
+        <li className={styles.wrapper__li}>
           <button
+            className={styles.wrapper__li__button}
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >

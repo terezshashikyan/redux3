@@ -12,10 +12,11 @@ import styles from "./Home.module.scss";
 const Home = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const count = useSelector(pokemonsSel.pokemonsCountSelector);
   const limit = useSelector(pokemonsSel.pokemonsLimitSelector);
-  const selectedType = useSelector(pokemonsSel.pokemonsTypeSelector);
+  const count = useSelector(pokemonsSel.pokemonsCountSelector);
   const pokemonsList = useSelector(pokemonsSel.pokemonsListSelector);
+  const selectedType = useSelector(pokemonsSel.pokemonsTypeSelector);
+  const searchInput = useSelector(pokemonsSel.pokemonsSearchInputSelector);
   const currentPage = useSelector(pokemonsSel.pokemonsCurrentPageSelector);
 
   useEffect(() => {
@@ -38,44 +39,57 @@ const Home = () => {
     dispatch(pokemonsOp.setCurrentPage(page));
   };
 
+  const handleSearchInputChange = (searchInput: string) =>
+    console.log(searchInput);
+
   const pokemonsListRenderer = pokemonsList
+    .filter((pokemon: IPokemon) =>
+      pokemon.name.toLowerCase().includes(searchInput.toLowerCase())
+    )
     .slice(currentPage * limit, currentPage * limit + limit)
     .map((pokemon) => <Card pokemon={pokemon} key={pokemon.id} />);
 
   return (
     <section className={styles.wrapper}>
-      <SearchInput onSearch={() => console.log("hi")} />
-      <DropDown
-        options={["A to Z", "Z to A", "Lowest to Highest", "Highest to Lowest"]}
-        handleClick={handleSortMethodClick}
-      />
-      <DropDown
-        options={[
-          "All Types",
-          "fighting",
-          "poison",
-          "rock",
-          "ghost",
-          "fire",
-          "grass",
-          "psychic",
-          "dragon",
-          "fairy",
-          "normal",
-          "flying",
-          "ground",
-          "bug",
-          "steel",
-          "water",
-          "electric",
-          "ice",
-          "dark",
-          "shadow",
-        ]}
-        handleClick={handleTypeClick}
-      />
-      <DropDown options={["10", "20", "50"]} handleClick={handleLimitClick} />
       <Heading children="Pokédex" />
+      <div className={styles.wrapper__firstSection}>
+        <SearchInput onSearch={handleSearchInputChange} />
+        <DropDown
+          options={[
+            "A to Z",
+            "Z to A",
+            "Lowest to Highest",
+            "Highest to Lowest",
+          ]}
+          handleClick={handleSortMethodClick}
+        />
+        <DropDown
+          options={[
+            "All Types",
+            "fighting",
+            "poison",
+            "rock",
+            "ghost",
+            "fire",
+            "grass",
+            "psychic",
+            "dragon",
+            "fairy",
+            "normal",
+            "flying",
+            "ground",
+            "bug",
+            "steel",
+            "water",
+            "electric",
+            "ice",
+            "dark",
+            "shadow",
+          ]}
+          handleClick={handleTypeClick}
+        />
+        <DropDown options={["10", "20", "50"]} handleClick={handleLimitClick} />
+      </div>
       <div className={styles.pokemonsList}>{pokemonsListRenderer}</div>
       <Pagination
         totalItems={count}

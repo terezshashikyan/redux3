@@ -1,6 +1,6 @@
 import { AppDispatch } from "..";
-import { IPokemon } from "../../components/Card/types";
 import { pokemonsSlice } from "./pokemonsSlice";
+import { IPokemon } from "../../components/Card/types";
 
 const setCurrentPage = (page: number) => {
   const { setCurrentPage } = pokemonsSlice.actions;

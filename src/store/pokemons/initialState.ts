@@ -10,6 +10,7 @@ export const initialState: IPokemonsInitialState = {
       filters: {
         limit: 20,
         currentPage: 1,
+        searchInput: '',
         sortMethod: "A to Z",
         selectedType: "poison",
       },

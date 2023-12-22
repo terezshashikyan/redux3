@@ -1,11 +1,13 @@
 .dropdown {
   gap: 10px;
+  width: 100%;
   display: flex;
   position: relative;
   align-items: center;
   flex-direction: column;
 
   &__toggle {
+    width: 100%;
     padding: 8px;
     display: flex;
     cursor: pointer;

@@ -3,6 +3,12 @@
 .wrapper {
     width: 100%;
     @extend %flex-center-center-column;
+    &__firstSection {
+        gap: 10px;
+        width: 80%;
+        display: grid;
+        grid-template-columns: 40% 20% 20% 20%;
+    }
 };
 
 .pokemonsList {

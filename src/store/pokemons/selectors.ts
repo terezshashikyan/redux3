@@ -25,6 +25,12 @@ const pokemonsTypeSelector = createSelector(
     pokemons.pokemons.data.filters.selectedType
 );
 
+const pokemonsSearchInputSelector = createSelector(
+  [pokemonsSelector],
+  (pokemons: IPokemonsInitialState) =>
+    pokemons.pokemons.data.filters.searchInput
+);
+
 const pokemonsLimitSelector = createSelector(
   [pokemonsSelector],
   (pokemons: IPokemonsInitialState) => pokemons.pokemons.data.filters.limit
@@ -45,6 +51,7 @@ export const pokemonsSel = {
   pokemonsLimitSelector,
   pokemonsCountSelector,
   pokemonsTypeSelector,
+  pokemonsSearchInputSelector,
   pokemonsCurrentPageSelector,
   renderedPokemonsListSelector,
   pokemonsListSelector,

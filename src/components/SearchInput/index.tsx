@@ -1,5 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 
+import styles from "./SearchInput.module.scss";
+
 interface SearchInputProps {
   onSearch: (query: string) => void;
 }
@@ -17,14 +19,17 @@ const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.wrapper} onSubmit={handleSubmit}>
       <input
+        className={styles.wrapper__input}
         type="text"
         placeholder="Search..."
         value={searchQuery}
         onChange={handleInputChange}
       />
-      <button type="submit">Search</button>
+      <button className={styles.wrapper__button} type="submit">
+        Search
+      </button>
     </form>
   );
 };
