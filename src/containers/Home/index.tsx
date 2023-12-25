@@ -8,10 +8,11 @@ import { pokemonsSel, pokemonsOp } from "../../store/pokemons";
 import { fetchPokemonsList } from "../../store/pokemons/thunks";
 
 import styles from "./Home.module.scss";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
+  const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
-
   const limit = useSelector(pokemonsSel.pokemonsLimitSelector);
   const count = useSelector(pokemonsSel.pokemonsCountSelector);
   const pokemonsList = useSelector(pokemonsSel.pokemonsListSelector);
