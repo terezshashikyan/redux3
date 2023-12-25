@@ -1,12 +1,17 @@
 import { ICardProps } from "./types";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./Card.module.scss";
 
 const Card: React.FC<ICardProps> = ({ pokemon }) => {
   console.log(pokemon.sprites.other.dream_world.front_default, "jjj");
+  const navigate = useNavigate();
 
   return (
-    <figure className={styles.wrapper} onClick={()=>console.log('hi')}>
+    <figure
+      className={styles.wrapper}
+      onClick={() => navigate(`${pokemon.id}`)}
+    >
       <img
         className={styles.img}
         src={pokemon.sprites.other.dream_world.front_default}

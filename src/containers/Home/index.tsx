@@ -11,7 +11,6 @@ import styles from "./Home.module.scss";
 import { useParams } from "react-router-dom";
 
 const Home = () => {
-  const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const limit = useSelector(pokemonsSel.pokemonsLimitSelector);
   const count = useSelector(pokemonsSel.pokemonsCountSelector);

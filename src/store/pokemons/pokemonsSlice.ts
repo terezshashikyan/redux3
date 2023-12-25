@@ -8,8 +8,8 @@ export const pokemonsSlice = createSlice({
   name: "pokemons",
   initialState: initialState,
   reducers: {
-    setPokemon(state: IPokemonsInitialState, action: PayloadAction<IPokemon>) {
-      state.pokemon.data = action.payload;
+    setPokemon(state: IPokemonsInitialState, action: PayloadAction<number>) {
+      state.pokemon.data = (state.pokemons.data.results).filter((pokemon)=>pokemon.id === action.payload)[0];
     },
     setPokemonsList(
       state: IPokemonsInitialState,

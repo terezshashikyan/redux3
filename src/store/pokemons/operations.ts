@@ -16,6 +16,13 @@ const setType = (type: string) => {
   };
 };
 
+const setPokemon = (id: number) => {
+  const { setPokemon } = pokemonsSlice.actions;
+  return (dispatch: AppDispatch) => {
+    dispatch(setPokemon(id));
+  };
+};
+
 const setLimit = (limit: string | number) => {
   const { setLimit } = pokemonsSlice.actions;
   return (dispatch: AppDispatch) => {
@@ -59,6 +66,7 @@ const sortPokemonsList = (pokemonsList: IPokemon[], sortMethod: string) => {
 export const pokemonsOp = {
   setType,
   setLimit, 
+  setPokemon,
   setCurrentPage,
   sortPokemonsList,
 };

@@ -43,7 +43,7 @@ const pokemonsCountSelector = createSelector(
 
 const pokemonSelector = createSelector(
   [pokemonsSelector],
-  (pokemons: IPokemonsInitialState) => pokemons.pokemon
+  (pokemons: IPokemonsInitialState) => pokemons.pokemon.data
 );
 
 export const pokemonsSel = {
