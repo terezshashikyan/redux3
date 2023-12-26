@@ -20,9 +20,14 @@
   }
   &__main {
     width: 100%;
-    display: flex;
+    display: grid;
     align-items: center;
+    grid-template-columns: 2fr 1fr;
     justify-content: space-between;
+    &__img {
+
+        height: auto;
+    }
     &__details {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
