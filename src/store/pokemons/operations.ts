@@ -16,6 +16,13 @@ const setType = (type: string) => {
   };
 };
 
+const setSearchInput = (searchInput: string) => {
+  const { setSearchInput } = pokemonsSlice.actions;
+  return (dispatch: AppDispatch) => {
+    dispatch(setSearchInput(searchInput));
+  };
+};
+
 const setPokemon = (id: number) => {
   const { setPokemon } = pokemonsSlice.actions;
   return (dispatch: AppDispatch) => {
@@ -67,6 +74,7 @@ export const pokemonsOp = {
   setType,
   setLimit, 
   setPokemon,
+  setSearchInput,
   setCurrentPage,
   sortPokemonsList,
 };

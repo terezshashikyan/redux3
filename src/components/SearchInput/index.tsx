@@ -1,36 +1,28 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 
 import styles from "./SearchInput.module.scss";
+import { pokemonsOp, pokemonsSel } from "../../store/pokemons";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../store";
 
-interface SearchInputProps {
-  onSearch: (query: string) => void;
-}
+const SearchInput: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const searchInput = useSelector(pokemonsSel.pokemonsSearchInputSelector);
 
-const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    onSearch(searchQuery);
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    dispatch(pokemonsOp.setSearchInput(event.target.value));
   };
 
   return (
-    <form className={styles.wrapper} onSubmit={handleSubmit}>
-      <input
-        className={styles.wrapper__input}
-        type="text"
-        placeholder="Search..."
-        value={searchQuery}
-        onChange={handleInputChange}
-      />
-      <button className={styles.wrapper__button} type="submit">
-        Search
-      </button>
-    </form>
+    <input
+      className={styles.wrapper__input}
+      type="text"
+      placeholder="Search..."
+      value={searchInput}
+      onChange={handleSearchInputChange}
+    />
   );
 };
 

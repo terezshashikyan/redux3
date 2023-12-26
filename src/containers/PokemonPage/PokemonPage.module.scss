@@ -1,3 +1,39 @@
 .wrapper {
+  gap: 30px;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  &__a {
+    width: 100%;
+    font-size: 1rem;
+    color: #397f84;
+    text-align: left;
+  }
+  &__h3 {
+    width: 100%;
+    font-size: 4rem;
+    color: #397f84;
+    text-align: left;
+  }
+  &__main {
+    width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__details {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      &__p {
+        font-size: 1rem;
+        color: #397f84;
+      }
+      &__span {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
 }

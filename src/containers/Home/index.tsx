@@ -16,7 +16,9 @@ const Home = () => {
   const count = useSelector(pokemonsSel.pokemonsCountSelector);
   const pokemonsList = useSelector(pokemonsSel.pokemonsListSelector);
   const selectedType = useSelector(pokemonsSel.pokemonsTypeSelector);
-  const searchInput = useSelector(pokemonsSel.pokemonsSearchInputSelector);
+  const searchInput = useSelector(
+    pokemonsSel.pokemonsSearchInputSelector
+  ).toLowerCase();
   const currentPage = useSelector(pokemonsSel.pokemonsCurrentPageSelector);
 
   useEffect(() => {
@@ -39,12 +41,9 @@ const Home = () => {
     dispatch(pokemonsOp.setCurrentPage(page));
   };
 
-  const handleSearchInputChange = (searchInput: string) =>
-    console.log(searchInput);
-
   const pokemonsListRenderer = pokemonsList
     .filter((pokemon: IPokemon) =>
-      pokemon.name.toLowerCase().includes(searchInput.toLowerCase())
+      (pokemon.name).toLowerCase().includes(searchInput)
     )
     .slice(currentPage * limit, currentPage * limit + limit)
     .map((pokemon) => <Card pokemon={pokemon} key={pokemon.id} />);
@@ -53,7 +52,7 @@ const Home = () => {
     <section className={styles.wrapper}>
       <Heading children="Pokédex" />
       <div className={styles.wrapper__firstSection}>
-        <SearchInput onSearch={handleSearchInputChange} />
+        <SearchInput />
         <DropDown
           options={[
             "A to Z",

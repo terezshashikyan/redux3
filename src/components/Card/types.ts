@@ -2,6 +2,11 @@ export interface IPokemon {
   name: string;
   image: string;
   forms: { name: string; url: string }[];
+  abilities: {
+    ability: { name: string; url: string };
+    is_hidden: boolean;
+    slot: number;
+  }[];
   game_indices: {
     game_index: number;
     version: { name: string; url: string };
@@ -43,8 +48,8 @@ export interface IPokemon {
     front_shiny: string;
     front_shiny_female: string | null;
     other: {
-      'dream_world': {
-        'front_default': string;
+      dream_world: {
+        front_default: string;
         front_female: string;
       };
       home: {
@@ -58,7 +63,7 @@ export interface IPokemon {
         front_shiny: string | null;
       };
     };
-  },
+  };
   versions: any;
   stats:
     | {

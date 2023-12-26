@@ -17,39 +17,59 @@ const PokemonPage = () => {
 
   return (
     <section className={styles.wrapper}>
-      <img
-        src={pokemon?.sprites.other.dream_world.front_default}
-        alt="pokemon"
-        className={styles.wrapper__img}
-      />
-      <div className={styles.wrapper__content}>
-        <a href="./" className={styles.wrapper__content__a}>
-          Explore more Pokémon
-        </a>
-        <h3 className={styles.wrapper__content__h3}>
-          {pokemon?.id} {pokemon?.name}
-        </h3>
-        <div className={styles.wrapper__content__details}>
-          <p className={styles.wrapper__content__details__p}>
-            <span className={styles.wrapper__content__details__span}>
-              Height:
-            </span>
-            {pokemon?.height}
-          </p>
-          <p className={styles.wrapper__content__details__p}>
-            <span className={styles.wrapper__content__details__span}>
-              Weight:
-            </span>
-            {pokemon?.weight}
-          </p>
-          <p className={styles.wrapper__content__details__p}>
-            <span className={styles.wrapper__content__details__span}>
-              Category:
-            </span>
-            {pokemon?.}
-          </p>
+      <a href="./" className={styles.wrapper__a}>
+        Explore more Pokémon
+      </a>
+      <h3 className={styles.wrapper__h3}>
+            #{pokemon?.id} {pokemon?.name}
+      </h3>
+      <div className={styles.wrapper__main}>
+        <img
+          src={pokemon?.sprites.other.dream_world.front_default}
+          alt="pokemon"
+          className={styles.wrapper__main__img}
+        />
+
+
+          <div className={styles.wrapper__main__details}>
+            <p className={styles.wrapper__main__details__p}>
+              <span className={styles.wrapper__details__span}>
+                Height:
+              </span>
+              {pokemon?.height}
+            </p>
+            <p className={styles.wrapper__main__details__p}>
+              <span className={styles.wrapper__main__details__span}>
+                Weight:
+              </span>
+              {pokemon?.weight}
+            </p>
+            <p className={styles.wrapper__main__details__p}>
+              <span className={styles.wrapper__main__details__span}>
+                Category:
+              </span>
+              {pokemon?.abilities.map((ability) => ability.ability.name)}
+            </p>
+            <p className={styles.wrapper__main__details__p}>
+              <span className={styles.wrapper__details__span}>
+                Types:
+              </span>
+              {pokemon?.types.map((type) => type.type.name)}
+            </p>
+            <p className={styles.wrapper__main__details__p}>
+              <span className={styles.wrapper__main__details__span}>
+                Stats:
+              </span>
+              {pokemon?.stats.map((stat) => stat.stat.name)}
+            </p>
+            <p className={styles.wrapper__main__details__p}>
+              <span className={styles.wrapper__main__details__span}>
+                Evolutions:
+              </span>
+              {pokemon?.stats.map((stat) => stat.stat.name)}
+            </p>
+          </div>
         </div>
-      </div>
     </section>
   );
 };
